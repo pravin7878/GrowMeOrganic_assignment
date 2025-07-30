@@ -1,34 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchData } from "./redux/slices/articeSlice.js"
+import { Button } from 'primereact/button';
+import Table from './components/DataTable.js';
+import Pagination from './components/Pagination.js';
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='p-5'>
+      <h3 className='text-center font-bold pb-5 text-3xl'>Dynamic Table</h3>
+      <div className='px-3 md:px-5 pb-5'>
+        <Table />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <Pagination/>
+    </div>
   )
 }
 
