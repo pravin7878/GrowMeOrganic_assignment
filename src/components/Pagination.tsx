@@ -1,11 +1,12 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Paginator } from 'primereact/paginator';
 import { useDispatch } from "react-redux";
 import { fetchData } from "../redux/slices/articeSlice.ts";
+import type { AppDispatch } from "../redux/store.ts";
 import type { PaginatorPageChangeEvent } from 'primereact/paginator';
 
 export default function Pagination() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [first, setFirst] = useState<number>(0);
     const [rows, setRows] = useState<number>(10);
 
