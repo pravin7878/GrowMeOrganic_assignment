@@ -3,8 +3,7 @@ import axios from "axios";
 
 const baseUrl = "https://api.artic.edu/api/v1/artworks";
 
-// Thunk to fetch data
-export const fetchData = createAsyncThunk("FETCH/DATA", async (page, thunkAPI) => {
+export const fetchData = createAsyncThunk("FETCH/DATA", async (page: number, thunkAPI) => {
   try {
     const res = await axios.get(`${baseUrl}?page=${page}`);
     return res.data.data; // returning the artwork data only
@@ -16,12 +15,13 @@ export const fetchData = createAsyncThunk("FETCH/DATA", async (page, thunkAPI) =
 const initialState = {
   isLoading: false,
   data: [],
-  isError: null,
+  isError: null as string | null,
 };
 
 const articleSlice = createSlice({
   name: "article",
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
@@ -34,7 +34,7 @@ const articleSlice = createSlice({
       })
       .addCase(fetchData.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = action.payload;
+        state.isError = action.payload as string | null;
       });
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Paginator } from 'primereact/paginator';
 import { useDispatch } from "react-redux";
 import { fetchData } from "../redux/slices/articeSlice.ts";
