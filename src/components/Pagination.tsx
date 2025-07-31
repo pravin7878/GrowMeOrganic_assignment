@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Paginator } from 'primereact/paginator';
 import { useDispatch } from "react-redux";
 import {fetchData} from "../redux/slices/articeSlice.ts"
+import type { PaginatorPageChangeEvent } from 'primereact/paginator';
 
 export default function Pagination() {
     const dispatch = useDispatch()
@@ -11,7 +12,7 @@ export default function Pagination() {
 
    
 
-const onPageChange = (e : ()=>{})=>{
+const onPageChange = (e : PaginatorPageChangeEvent)=>{
     console.log("event",e)
     localStorage.setItem("page",JSON.stringify(e.page+1))
     dispatch(fetchData(e.page+1))
