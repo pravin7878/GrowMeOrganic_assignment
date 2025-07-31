@@ -1,17 +1,9 @@
-import { useEffect, useState } from 'react'
 import './App.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchData } from "./redux/slices/articeSlice.js"
-import { Button } from 'primereact/button';
-import Table from './components/DataTable.js';
-import Pagination from './components/Pagination.js';
-
-
+import Table from './components/DataTable';
+import Pagination from './components/Pagination';
 
 
 function App() {
-
-
   return (
     <div className='p-5'>
       <h3 className='text-center font-bold pb-5 text-3xl'>Dynamic Table</h3>
