@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Paginator } from 'primereact/paginator';
 import { useDispatch } from "react-redux";
-import { fetchData } from "../redux/slices/articeSlice.ts";
-import type { AppDispatch } from "../redux/store.ts";
+import { fetchData } from "../redux/slices/articeSlice"; 
+import type { AppDispatch } from "../redux/store";       
 import type { PaginatorPageChangeEvent } from 'primereact/paginator';
 
 export default function Pagination() {
