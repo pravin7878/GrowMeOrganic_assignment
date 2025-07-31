@@ -7,9 +7,12 @@ export const fetchData = createAsyncThunk("FETCH/DATA", async (page: number, thu
   try {
     const res = await axios.get(`${baseUrl}?page=${page}`);
     return res.data.data; // returning the artwork data only
-  } catch (error) {
+  } catch (error: unknown) {
+  if (error instanceof Error) {
     return thunkAPI.rejectWithValue(error.message);
   }
+  return thunkAPI.rejectWithValue('Unknown error');
+}
 });
 
 const initialState = {
