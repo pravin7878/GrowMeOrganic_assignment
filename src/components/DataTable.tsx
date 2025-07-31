@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../redux/slices/articeSlice.ts';
 import { PopUp } from './PopUp';
-// import { RootState } from '../redux/store.ts';
-import type { AppDispatch } from '../redux/store.ts';
+import type { RootState, AppDispatch } from '../redux/store.ts';
 
 interface Product {
   id: string;
@@ -26,15 +25,13 @@ export default function Table() {
   const [rowToSelect, setRowToSelect] = useState<number>(
     JSON.parse(localStorage.getItem('selectCount') || '0')
   );
-  const [rowClick, setRowClick] = useState<boolean>(true);
-  const [page, setPage] = useState<number>(
+  const [rowClick] = useState<boolean>(true);
+  const [page] = useState<number>(
     JSON.parse(localStorage.getItem('page') || '1')
   );
 
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, isError, data } = useSelector(
-    (state: RootState) => state.artic
-  );
+  const { data } = useSelector((state: RootState) => state.artic);
 
   const handleSubmit = (selectCount: number) => {
     localStorage.setItem('selectCount', JSON.stringify(selectCount));
@@ -59,16 +56,16 @@ export default function Table() {
     localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
   }, [selectedProducts, rowToSelect]);
 
- const handleSelectionChange = (e: any) => {
-  setSelectedProducts(e.value as Product[]);
-};
+  const handleSelectionChange = (e: any) => {
+    setSelectedProducts(e.value as Product[]);
+  };
 
   return (
     <div className="card">
       <DataTable
         value={products}
         tableStyle={{ minWidth: '50rem' }}
-        selectionMode={rowClick ? undefined : 'multiple'}
+        selectionMode={rowClick ? null : 'multiple'}
         selection={selectedProducts}
         onSelectionChange={handleSelectionChange}
         dataKey="id"
@@ -78,7 +75,6 @@ export default function Table() {
           field=""
           header={
             <PopUp
-              setRowToSelect={setRowToSelect}
               isClicked={isClicked}
               setisClicked={setisClicked}
               onSubmit={handleSubmit}

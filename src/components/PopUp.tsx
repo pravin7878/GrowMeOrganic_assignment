@@ -1,15 +1,14 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
+import type { ChangeEvent } from 'react';
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
 
 interface PopUpProps {
-  setRowToSelect: (count: number) => void;
   isClicked: boolean;
   setisClicked: (value: boolean) => void;
   onSubmit: (count: number) => void;
 }
 
 export const PopUp: React.FC<PopUpProps> = ({
-  setRowToSelect,
   isClicked,
   setisClicked,
   onSubmit,
